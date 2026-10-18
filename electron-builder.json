@@ -28,5 +28,14 @@
     "installerIcon": "build/icon.ico",
     "uninstallerIcon": "build/icon.ico"
   },
-  "compression": "maximum"
+  "compression": "maximum",
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ],
+    "category": "Graphics",
+    "maintainer": "Jon Brynjar P\u00e5lsson Markan",
+    "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
+  }
 }

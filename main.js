@@ -13,7 +13,6 @@ function createWindow() {
     show: false,
     backgroundColor: '#0b1120',
     title: "ICONIC",
-    icon: path.join(__dirname, 'build', 'icon.ico'),
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
