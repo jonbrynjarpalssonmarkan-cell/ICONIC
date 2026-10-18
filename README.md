@@ -45,3 +45,35 @@ ICONIC/
 - No server-side code (PHP, Python, etc.) runs inside the app.
 - Sign the output with a code signing certificate to avoid SmartScreen warnings.
 - Bump "version" in package.json for every release.
+
+## Linux test packages (x86_64)
+
+Open the **Linux packages** run in the repository's Actions tab and download
+**ICONIC-linux-x64** from Artifacts after the build succeeds. Extract the ZIP.
+
+Ubuntu/Debian: install the downloaded package from its folder:
+
+```sh
+sudo apt install ./ICONIC-1.0.0-linux-amd64.deb
+iconic
+```
+
+Other distributions: make the AppImage executable and run it:
+
+```sh
+chmod +x ICONIC-1.0.0-linux-x86_64.AppImage
+./ICONIC-1.0.0-linux-x86_64.AppImage
+```
+
+If FUSE is unavailable, run the AppImage with `--appimage-extract-and-run`.
+Run as a normal desktop user. Internet access is needed for external services
+and assets used by the bundled Perchance page.
+
+To build locally with Node.js 22 and npm:
+
+```sh
+npm install
+npm run build:linux
+```
+
+Packages are written to `dist/`. Windows builds still use `npm run build`.

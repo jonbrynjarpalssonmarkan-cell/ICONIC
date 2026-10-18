@@ -1,0 +1,30 @@
+name: Linux packages
+on:
+  push:
+    branches: [main, linux-test-build]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run build:linux
+      - name: Check Debian package
+        run: dpkg-deb --info dist/*.deb
+      - name: Checksums
+        run: cd dist && sha256sum *.AppImage *.deb > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ICONIC-linux-x64
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/SHA256SUMS
+          if-no-files-found: error
